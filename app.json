@@ -1,0 +1,12 @@
+{
+  "name": "OpenApps-ReactNative",
+  "displayName": "OpenApps-ReactNative",
+  "expo": {
+    "name": "OpenApps-ReactNative",
+    "slug": "OpenApps-ReactNative",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
