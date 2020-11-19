@@ -1,10 +1,11 @@
-import {Button, Platform, Text, View} from "react-native";
+import {Platform, Text, View} from "react-native";
 import React from "react";
 import {connect} from 'react-redux';
 import {selectorAuth, selectorUserInfo} from "../store/auth/selectors";
 import {setAuthCreator, setUserInfoCreator} from "../store/auth/actions";
 import * as Google from "expo-google-app-auth";
 import {androidOAuthKey} from '../../config'
+import {Avatar, SocialIcon} from "react-native-elements";
 
 const mapStateToProps = (state) => (
     {
@@ -49,9 +50,26 @@ function AuthScreen(props) {
 
     return (
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Text>Auth Screen</Text>
-            <Button title="Sign in"
-                    onPress={() => googleSignIn()}
+            <Avatar
+                size="xlarge"
+                rounded
+                icon={{name: 'dashboard', color: 'white', type: 'material'}}
+                overlayContainerStyle={{backgroundColor: '#2089DC'}}
+            />
+            <Text style={{fontSize: 20, fontWeight: 500, color: '#0d66b5'}}>OpenApps</Text>
+            <Text>Pre-alpha build</Text>
+            <SocialIcon
+                button
+                title="Sign in with Google"
+                type='google'
+                onPress={() => googleSignIn()}
+                style={{minWidth: 200, marginTop: 32}}
+            />
+            <SocialIcon
+                button
+                title="Sign in with VK"
+                type='vk'
+                style={{minWidth: 200}}
             />
         </View>
     );
