@@ -5,9 +5,10 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {connect} from 'react-redux';
 import {selectorAuth} from "./store/auth/selectors";
 import AuthScreen from "./screens/AuthScreen";
-import AppsScreen from "./screens/AppsScreen";
-import HomeScreen from "./screens/HomeScreen";
-import ChatsScreen from "./screens/ChatsScreen";
+import AppsScreen from "./screens/TabNavigator/AppsScreen";
+import HomeScreen from "./screens/TabNavigator/HomeScreen";
+import ChatsScreen from "./screens/TabNavigator/ChatsScreen";
+import {Icon} from "react-native-elements";
 
 const mapStateToProps = (state) => (
     {
@@ -23,7 +24,44 @@ function App(props) {
         <NavigationContainer>
             {props.auth ? (
                 <>
-                    <Tab.Navigator>
+                    <Tab.Navigator
+                        tabBarOptions={{
+                            activeTintColor: '#2089DC',
+                            inactiveTintColor: 'gray',
+                        }}
+                        screenOptions={({route}) => ({
+                            tabBarIcon: ({focused}) => {
+                                switch (route.name){
+                                    case 'Apps':{
+                                        return (
+                                            <Icon
+                                                type='ionicon'
+                                                name="ios-apps"
+                                                color={focused ? '#2089DC' : 'gray'}
+                                            />
+                                        );
+                                    }
+                                    case 'Home':{
+                                        return (
+                                            <Icon
+                                                name="home"
+                                                color={focused ? '#2089DC' : 'gray'}
+                                            />
+                                        );
+                                    }
+                                    case 'Chats':{
+                                        return (
+                                            <Icon
+                                                name='md-chatboxes'
+                                                type='ionicon'
+                                                color={focused ? '#2089DC' : 'gray'}
+                                            />
+                                        );
+                                    }
+                                }
+                            }
+                        })}
+                    >
                         <Tab.Screen name="Apps" component={AppsScreen}/>
                         <Tab.Screen name="Home" component={HomeScreen}/>
                         <Tab.Screen name="Chats" component={ChatsScreen}/>

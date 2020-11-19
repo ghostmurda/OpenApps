@@ -1,9 +1,11 @@
 import {Text, View} from "react-native";
 import React from "react";
+import DefaultHeader from "../../components/DefaultHeader";
 
 export default function HomeScreen(){
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View>
+            <DefaultHeader title="OpenApps pre-alpha"/>
             <Text>HomeTab</Text>
         </View>
     );
