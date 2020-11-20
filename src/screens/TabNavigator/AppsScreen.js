@@ -1,5 +1,5 @@
 import React from "react";
-import {View} from "react-native";
+import {ScrollView} from "react-native";
 import DefaultHeader from "../../components/DefaultHeader";
 import AppCard from "../../components/AppCard";
 
@@ -14,9 +14,9 @@ const apps = [
 
 export default function AppsScreen(){
     return (
-        <View>
+        <ScrollView>
             <DefaultHeader title="OpenApps pre-alpha"/>
             {apps.map((item, i) => <AppCard key={i} {...item}/>)}
-        </View>
+        </ScrollView>
     );
 }
