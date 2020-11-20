@@ -2,21 +2,22 @@ import React from "react";
 import {ScrollView} from "react-native";
 import DefaultHeader from "../../components/DefaultHeader";
 import AppCard from "../../components/AppCard";
+import {selectorApps} from "../../store/appsList/selectors";
+import {connect} from 'react-redux';
 
-const apps = [
+const mapStateToProps = (state) => (
     {
-        name: "App",
-        genre: "Test",
-        img: "https://app2top.ru/wp-content/uploads/2019/05/PUBG-MOBILE-0.4.0-1024x725.jpg",
-        description: "App description test text test text App description test text test text App description test text test text"
+        apps: selectorApps(state)
     }
-]
+)
 
-export default function AppsScreen(){
+function AppsScreen(props){
     return (
         <ScrollView>
             <DefaultHeader title="OpenApps pre-alpha"/>
-            {apps.map((item, i) => <AppCard key={i} {...item}/>)}
+            {props.apps.map((item, i) => <AppCard key={i} {...item}/>)}
         </ScrollView>
     );
 }
+
+export default connect(mapStateToProps)(AppsScreen);
