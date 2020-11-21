@@ -1,9 +1,10 @@
 import React from "react";
-import {ScrollView, Text, View} from "react-native";
+import {ScrollView} from "react-native";
 import AppCard from "../../components/AppCard";
 import {selectorApps} from "../../store/appsList/selectors";
 import {connect} from 'react-redux';
 import {createStackNavigator} from "@react-navigation/stack";
+import AppWindow from "../../components/AppWindow";
 
 const mapStateToProps = (state) => (
     {
@@ -21,21 +22,20 @@ const AppsList = ({route, navigation}) => {
     );
 }
 
-const App = ({route}) => {
-    return (
-        <View>
-            <Text>App</Text>
-        </View>
-    );
-}
-
 function AppsScreen(props) {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="OpenApps" component={AppsList} initialParams={{apps: props.apps}} />
+            <Stack.Screen
+                name="AppsList"
+                component={AppsList}
+                initialParams={{apps: props.apps}}
+                options={{
+                    title: 'OpenApps'
+                }}
+            />
             <Stack.Screen
                 name="App"
-                component={App}
+                component={AppWindow}
                 options={({ route }) => ({ title: route.params.headerTitle })}
             />
         </Stack.Navigator>
