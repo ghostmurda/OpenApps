@@ -27,6 +27,7 @@ export default function AppCard(props){
             <Button
                 buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                 title="Open"
+                onPress={() => props.nav.navigate('App')}
             />
         </Card>
     );
