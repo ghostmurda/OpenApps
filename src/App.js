@@ -70,16 +70,7 @@ function App(props) {
             ) : (
                 <>
                     <Stack.Navigator>
-                        <Stack.Screen
-                            name="Authorization"
-                            component={AuthScreen}
-                            options={{
-                                headerStyle: {
-                                    backgroundColor: '#2089DC'
-                                },
-                                headerTintColor: 'white'
-                            }}
-                        />
+                        <Stack.Screen name="Authorization" component={AuthScreen}/>
                     </Stack.Navigator>
                 </>
             )}
