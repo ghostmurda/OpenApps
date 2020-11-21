@@ -21,7 +21,7 @@ const AppsList = ({route, navigation}) => {
     );
 }
 
-const App = () => {
+const App = ({route}) => {
     return (
         <View>
             <Text>App</Text>
@@ -33,7 +33,11 @@ function AppsScreen(props) {
     return (
         <Stack.Navigator>
             <Stack.Screen name="OpenApps" component={AppsList} initialParams={{apps: props.apps}} />
-            <Stack.Screen name="App" component={App} />
+            <Stack.Screen
+                name="App"
+                component={App}
+                options={({ route }) => ({ title: route.params.headerTitle })}
+            />
         </Stack.Navigator>
     );
 }
