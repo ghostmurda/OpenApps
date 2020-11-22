@@ -8,7 +8,7 @@ export default function AppCard(props){
             <ListItem containerStyle={{padding: 0, marginBottom: 12}}>
                 <Avatar size="medium" title="A" overlayContainerStyle={{backgroundColor: '#2089DC', borderRadius: 10}}/>
                 <ListItem.Content>
-                    <ListItem.Title style={{fontWeight: 'bold', fontSize: 17}}>
+                    <ListItem.Title style={{fontSize: 17}}>
                         {props.name}
                     </ListItem.Title>
                     <ListItem.Subtitle>

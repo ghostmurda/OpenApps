@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => (
 
 function AuthScreen(props) {
     const googleSignIn = async () => {
-        if (Platform.OS === 'android'){
+        if (Platform.OS === 'android' && Platform.Version === '28'){
             const { type, accessToken, user } = await Google.logInAsync({
                 androidClientId: androidOAuthKey,
             });
@@ -56,7 +56,7 @@ function AuthScreen(props) {
                 icon={{name: 'dashboard', color: 'white', type: 'material'}}
                 overlayContainerStyle={{backgroundColor: '#2089DC'}}
             />
-            <Text style={{fontSize: 20, fontWeight: 500, color: '#0d66b5'}}>OpenApps</Text>
+            <Text style={{fontSize: 20, color: '#0d66b5'}}>OpenApps</Text>
             <Text>Pre-alpha build</Text>
             <SocialIcon
                 button
