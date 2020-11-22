@@ -3,17 +3,10 @@ export const SET_APPS = 'appsList/SET_APPS';
 export const TOGGLE_LOADER = 'appsList/TOGGLE_LOADER';
 
 const initialState = {
-    isLoading: false,
+    isLoaded: false,
     page: 0,
     count: 2,
-    apps: [
-        {
-            name: "App",
-            genre: "Test",
-            img: "https://app2top.ru/wp-content/uploads/2019/05/PUBG-MOBILE-0.4.0-1024x725.jpg",
-            description: "App description test text test text App description test text test text App description test text test text"
-        }
-    ]
+    apps: []
 }
 export const appsListReducer = (state = initialState, action) => {
     switch(action.type){
@@ -24,7 +17,7 @@ export const appsListReducer = (state = initialState, action) => {
             return {...state, apps: action.payload}
         }
         case TOGGLE_LOADER:{
-            return {...state, isLoading: action.payload}
+            return {...state, isLoaded: action.payload}
         }
         default:
             return state;

@@ -4,3 +4,5 @@ export const selectorStats = (state) => ({
 });
 
 export const selectorApps = (state) => state.appsListState.apps;
+
+export const selectorIsLoaded = (state) => state.appsListState.isLoaded;

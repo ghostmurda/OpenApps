@@ -6,7 +6,10 @@ export default function AppCard(props){
     return (
         <Card containerStyle={{borderRadius: 10}}>
             <ListItem containerStyle={{padding: 0, marginBottom: 12}}>
-                <Avatar size="medium" title="A" overlayContainerStyle={{backgroundColor: '#2089DC', borderRadius: 10}}/>
+                <Avatar size="medium"
+                        overlayContainerStyle={{backgroundColor: '#2089DC', borderRadius: 10}}
+                        source={{uri: props.thumbnail}}
+                />
                 <ListItem.Content>
                     <ListItem.Title style={{fontSize: 17}}>
                         {props.name}
