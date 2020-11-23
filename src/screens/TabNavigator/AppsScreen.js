@@ -1,11 +1,12 @@
 import React, {useEffect} from "react";
-import {ActivityIndicator, ScrollView, View} from "react-native";
+import {ActivityIndicator, FlatList, ScrollView, View} from "react-native";
 import AppCard from "../../components/AppCard";
 import {selectorApps, selectorIsLoaded} from "../../store/appsList/selectors";
 import {connect} from 'react-redux';
 import {createStackNavigator} from "@react-navigation/stack";
 import AppWindow from "../../components/AppWindow";
 import {getAppsThunk} from "../../store/appsList/actions";
+import {categories, Category} from "../../components/AppsCategories";
 
 const mapStateToProps = (state) => (
     {
@@ -23,10 +24,23 @@ const mapDispatchToProps = (dispatch) => (
 const Stack = createStackNavigator();
 
 const AppsList = ({route, navigation}) => {
+    const renderCategory = ({ item }) => (
+        <Category title={item.title} />
+    );
+
     return (
-        <ScrollView>
-            {route.params.apps.map((item, i) => <AppCard nav={navigation} key={i} {...item} />)}
-        </ScrollView>
+        <View>
+            <FlatList
+                data={categories}
+                renderItem={renderCategory}
+                horizontal={true}
+                keyExtractor={item => item.id}
+                showsHorizontalScrollIndicator={false}
+            />
+            <ScrollView>
+                {route.params.apps.map((item, i) => <AppCard nav={navigation} key={i} {...item} />)}
+            </ScrollView>
+        </View>
     );
 }
 
