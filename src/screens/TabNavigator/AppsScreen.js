@@ -36,6 +36,10 @@ const AppsList = ({route, navigation}) => {
                 horizontal={true}
                 keyExtractor={item => item.id}
                 showsHorizontalScrollIndicator={false}
+                style={{
+                    borderBottomColor: 'gray',
+                    borderBottomWidth: 0.2
+                }}
             />
             <ScrollView>
                 {route.params.apps.map((item, i) => <AppCard nav={navigation} key={i} {...item} />)}
