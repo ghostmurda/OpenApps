@@ -4,21 +4,13 @@ Made with React Native, Expo, Redux.<br>
 Server repository: https://github.com/ghostmurda/OpenApps-Server
 <br>
 <br>
-Authorization screen
+Authorization screen &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apps screen                        
 <br>
 ![Authorization page](demo/screenshot-0.png?raw=true "Title")
-<br>
-<br>
-Apps screen
-<br>
 ![Apps page](demo/screenshot-1.png?raw=true "Title")
 <br>
 <br>
-2GIS mini-app
+2GIS mini-app &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Delivery Club mini-app
 <br>
 ![Apps page](demo/screenshot-2.png?raw=true "Title")
-<br>
-<br>
-Delivery Club mini-app
-<br>
 ![Apps page](demo/screenshot-3.png?raw=true "Title")
