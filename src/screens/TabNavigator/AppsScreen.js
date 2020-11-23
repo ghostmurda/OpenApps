@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {ScrollView} from "react-native";
+import {ActivityIndicator, ScrollView, View} from "react-native";
 import AppCard from "../../components/AppCard";
 import {selectorApps, selectorIsLoaded} from "../../store/appsList/selectors";
 import {connect} from 'react-redux';
@@ -37,21 +37,27 @@ function AppsScreen(props) {
 
     return (
         <>
-            {props.isLoaded && <Stack.Navigator>
-                <Stack.Screen
-                    name="AppsList"
-                    component={AppsList}
-                    initialParams={{apps: props.apps}}
-                    options={{
-                        title: 'OpenApps'
-                    }}
-                />
-                <Stack.Screen
-                    name="App"
-                    component={AppWindow}
-                    options={({route}) => ({title: route.params.headerTitle})}
-                />
-            </Stack.Navigator>}
+            {props.isLoaded ?
+                <Stack.Navigator>
+                    <Stack.Screen
+                        name="AppsList"
+                        component={AppsList}
+                        initialParams={{apps: props.apps}}
+                        options={{
+                            title: 'OpenApps'
+                        }}
+                    />
+                    <Stack.Screen
+                        name="App"
+                        component={AppWindow}
+                        options={({route}) => ({title: route.params.headerTitle})}
+                    />
+                </Stack.Navigator>
+                :
+                <View style={{flex: 1, justifyContent: 'center'}}>
+                    <ActivityIndicator size="large" color="#2089DC" />
+                </View>
+            }
         </>
     );
 }

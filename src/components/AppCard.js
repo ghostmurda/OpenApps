@@ -21,7 +21,7 @@ export default function AppCard(props){
             </ListItem>
             <Card.Divider/>
             <Card.Image
-                style={{borderRadius: 10, minHeight: 300}}
+                style={{borderRadius: 10}}
                 source={{uri: props.img}}
             />
             <Text style={{marginBottom: 10, marginTop: 10, fontSize: 17}}>
