@@ -28,6 +28,13 @@ function App(props) {
                         tabBarOptions={{
                             activeTintColor: '#2089DC',
                             inactiveTintColor: 'gray',
+                            keyboardHidesTabBar: true,
+                            labelStyle: {
+                                fontSize: 14
+                            },
+                            tabStyle: {
+                                padding: 3
+                            }
                         }}
                         screenOptions={({route}) => ({
                             tabBarIcon: ({focused}) => {
@@ -38,6 +45,7 @@ function App(props) {
                                                 type='ionicon'
                                                 name="ios-apps"
                                                 color={focused ? '#2089DC' : 'gray'}
+                                                size={27}
                                             />
                                         );
                                     }
@@ -46,6 +54,7 @@ function App(props) {
                                             <Icon
                                                 name="home"
                                                 color={focused ? '#2089DC' : 'gray'}
+                                                size={27}
                                             />
                                         );
                                     }
@@ -55,6 +64,7 @@ function App(props) {
                                                 name='md-chatboxes'
                                                 type='ionicon'
                                                 color={focused ? '#2089DC' : 'gray'}
+                                                size={27}
                                             />
                                         );
                                     }
