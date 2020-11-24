@@ -7,6 +7,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import AppWindow from "../../components/AppWindow";
 import {getAppsThunk} from "../../store/appsList/actions";
 import {categories, Category} from "../../components/AppsCategories";
+import SearchForm from "../../components/SearchForm";
 
 const mapStateToProps = (state) => (
     {
@@ -67,7 +68,10 @@ function AppsScreen(props) {
                             headerStyle: {
                                 elevation: 0,
                                 shadowOpacity: 0
-                            }
+                            },
+                            headerRight: () => (
+                                <SearchForm/>
+                            )
                         }}
                     />
                     <Stack.Screen
