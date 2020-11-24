@@ -1,0 +1,1 @@
+export const selectorCategory = (state) => state.appsCategoriesState.selectedPage;
