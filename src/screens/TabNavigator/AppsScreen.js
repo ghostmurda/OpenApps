@@ -2,12 +2,13 @@ import React, {useEffect} from "react";
 import {ActivityIndicator, FlatList, ScrollView, View} from "react-native";
 import AppCard from "../../components/AppCard";
 import {selectorApps, selectorIsLoaded} from "../../store/appsList/selectors";
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import {createStackNavigator} from "@react-navigation/stack";
 import AppWindow from "../../components/AppWindow";
 import {getAppsThunk} from "../../store/appsList/actions";
 import {categories, Category} from "../../components/AppsCategories";
 import SearchForm from "../../components/SearchForm";
+import {selectorCategory} from "../../store/appsCategories/selectors";
 
 const mapStateToProps = (state) => (
     {
@@ -28,6 +29,7 @@ const AppsList = ({route, navigation}) => {
     const renderCategory = ({ item }) => (
         <Category title={item.title} />
     );
+    const selectedCategory = useSelector(state => selectorCategory(state));
 
     return (
         <View>
@@ -43,7 +45,13 @@ const AppsList = ({route, navigation}) => {
                 }}
             />
             <ScrollView>
-                {route.params.apps.map((item, i) => <AppCard nav={navigation} key={i} {...item} />)}
+                {route.params.apps.map((item, i) => {
+                    if (item.genre === selectedCategory){
+                        return <AppCard nav={navigation} key={i} {...item} />
+                    } else if (selectedCategory === 'All'){
+                        return <AppCard nav={navigation} key={i} {...item} />
+                    }
+                })}
                 <View style={{height: 80}}/>
             </ScrollView>
         </View>
