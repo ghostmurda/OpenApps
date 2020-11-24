@@ -73,6 +73,8 @@ const styles = StyleSheet.create({
     selectedTitle: {
         fontSize: 17,
         lineHeight: 30,
-        color: '#2089DC'
+        color: '#2089DC',
+        borderBottomWidth: 2,
+        borderBottomColor: '#2089DC'
     }
 });
