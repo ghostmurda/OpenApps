@@ -63,7 +63,11 @@ function AppsScreen(props) {
                         component={AppsList}
                         initialParams={{apps: props.apps}}
                         options={{
-                            title: 'OpenApps'
+                            title: 'OpenApps',
+                            headerStyle: {
+                                elevation: 0,
+                                shadowOpacity: 0
+                            }
                         }}
                     />
                     <Stack.Screen

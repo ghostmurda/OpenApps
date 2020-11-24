@@ -34,19 +34,18 @@ export const categories = [
 
 export const Category = ({ title }) => (
     <View style={styles.wrapper}>
-        <Text style={styles.title}>&nbsp;&nbsp;{title}&nbsp;&nbsp;</Text>
+        <Text style={styles.title}>{title}</Text>
     </View>
 );
 
 const styles = StyleSheet.create({
     wrapper: {
         padding: 16,
+        backgroundColor: 'white'
     },
     title: {
         fontSize: 17,
         lineHeight: 30,
         color: 'gray',
-        backgroundColor: 'white',
-        borderRadius: 6
     }
 });
