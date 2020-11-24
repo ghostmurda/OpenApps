@@ -39,7 +39,7 @@ const AppsList = ({route, navigation}) => {
                 showsHorizontalScrollIndicator={false}
                 style={{
                     borderBottomColor: 'gray',
-                    borderBottomWidth: 0.2
+                    borderBottomWidth: 0.3
                 }}
             />
             <ScrollView>

@@ -4,7 +4,7 @@ import {Text} from "react-native";
 
 export default function AppCard(props){
     return (
-        <Card containerStyle={{borderRadius: 10}}>
+        <Card containerStyle={{borderRadius: 10, borderWidth: 0.2}}>
             <ListItem containerStyle={{padding: 0, marginBottom: 12}}>
                 <Avatar size="medium"
                         overlayContainerStyle={{backgroundColor: '#2089DC', borderRadius: 10}}
@@ -29,7 +29,9 @@ export default function AppCard(props){
             </Text>
             <Button
                 buttonStyle={{borderRadius: 10, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                title="Open"
+                title="Открыть"
+                type="outline"
+                raised
                 onPress={() => props.nav.navigate('App', {
                     headerTitle: props.name,
                     url: props.url
