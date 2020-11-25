@@ -65,3 +65,4 @@ web-build/
 
 config.js
 google-services.json
+firebase.js
