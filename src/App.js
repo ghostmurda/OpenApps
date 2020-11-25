@@ -9,6 +9,7 @@ import AppsScreen from "./screens/TabNavigator/AppsScreen";
 import HomeScreen from "./screens/TabNavigator/HomeScreen";
 import ChatsScreen from "./screens/TabNavigator/ChatsScreen";
 import {Icon} from "react-native-elements";
+import PhoneAuthScreen from "./screens/PhoneAuthScreen";
 
 const mapStateToProps = (state) => (
     {
@@ -80,7 +81,7 @@ function App(props) {
             ) : (
                 <>
                     <Stack.Navigator>
-                        <Stack.Screen name="Authorization" component={AuthScreen}/>
+                        <Stack.Screen name="Authorization" component={PhoneAuthScreen}/>
                     </Stack.Navigator>
                 </>
             )}
