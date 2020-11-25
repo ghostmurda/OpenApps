@@ -4,17 +4,10 @@ Made with React Native, Expo, Redux.<br>
 Server repository: https://github.com/ghostmurda/OpenApps-Server
 <br>
 <br>
-Food category apps                   
-<br>
+## Main menu showcase 
 ![Apps page](demo/screenshot-food.jpg?raw=true "Title")
 <br>
 <br>
-Maps category apps                   
-<br>
-![Apps page](demo/screenshot-maps.jpg?raw=true "Title")
-<br>
-<br>
-2GIS mini-app &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Delivery Club mini-app
-<br>
+## Mini-apps showcase
 ![Apps page](demo/screenshot-2.png?raw=true "Title")
 ![Apps page](demo/screenshot-3.png?raw=true "Title")
