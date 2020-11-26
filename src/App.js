@@ -81,7 +81,8 @@ function App(props) {
             ) : (
                 <>
                     <Stack.Navigator>
-                        <Stack.Screen name="Authorization" component={PhoneAuthScreen}/>
+                        <Stack.Screen name="Authorization" component={AuthScreen}/>
+                        <Stack.Screen name="Phone authentication" component={PhoneAuthScreen}/>
                     </Stack.Navigator>
                 </>
             )}
