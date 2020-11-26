@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import {setAuthCreator, setUserInfoCreator} from "../store/auth/actions";
 import * as Google from "expo-google-app-auth";
 import {androidOAuthKey} from '../../config'
-import {Avatar, SocialIcon} from "react-native-elements";
+import {Avatar, Button, SocialIcon} from "react-native-elements";
 
 export default function AuthScreen({navigation}) {
     const [googleLoading, setGoogleLoading] = useState(false);
@@ -49,12 +49,19 @@ export default function AuthScreen({navigation}) {
                     style={{minWidth: 200, marginTop: 32}}
                 />
             }
-            <SocialIcon
-                button
-                type="envelope"
+            <Button
                 title="Sign in with phone"
                 onPress={() => navigation.navigate('Phone authentication')}
-                style={{minWidth: 200}}
+                raised
+                containerStyle={{marginTop: 6}}
+                buttonStyle={{width: 200, height: 50, borderRadius: 30, backgroundColor: 'black'}}
+                titleStyle={{marginLeft: 10, fontSize: 14}}
+                icon={{
+                    type: 'font-awesome',
+                    name: 'mobile',
+                    size: 35,
+                    color: 'white'
+                }}
             />
         </View>
     );

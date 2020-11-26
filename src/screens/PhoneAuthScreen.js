@@ -1,20 +1,25 @@
 import React, {useRef, useState} from 'react';
-import {Text, TextInput, TouchableOpacity, View} from "react-native";
-import {Avatar} from "react-native-elements";
+import {View} from "react-native";
+import {Button, Input, SocialIcon} from "react-native-elements";
 import {FirebaseRecaptchaVerifierModal} from "expo-firebase-recaptcha";
 import firebase from '../../firebase';
+import {useDispatch} from "react-redux";
+import {setAuthCreator} from "../store/auth/actions";
 
 export default function PhoneAuthScreen(){
+    const dispatch = useDispatch();
     const [phoneNumber, setPhoneNumber] = useState('');
     const [code, setCode] = useState('');
     const [verificationId, setVerificationId] = useState(null);
     const recaptchaVerifier = useRef(null);
 
     const sendVerification = () => {
-        const phoneProvider = new firebase.auth.PhoneAuthProvider();
-        phoneProvider
-            .verifyPhoneNumber(phoneNumber, recaptchaVerifier.current)
-            .then(setVerificationId);
+        if (phoneNumber !== '' && phoneNumber.length >= 12){
+            const phoneProvider = new firebase.auth.PhoneAuthProvider();
+            phoneProvider
+                .verifyPhoneNumber(phoneNumber, recaptchaVerifier.current)
+                .then(setVerificationId);
+        }
     };
     const confirmCode = () => {
         const credential = firebase.auth.PhoneAuthProvider.credential(
@@ -25,38 +30,51 @@ export default function PhoneAuthScreen(){
             .auth()
             .signInWithCredential(credential)
             .then((result) => {
+                dispatch(setAuthCreator(true));
                 console.log(result);
             });
     };
 
     return (
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Avatar
-                size="xlarge"
-                rounded
-                icon={{name: 'dashboard', color: 'white', type: 'material'}}
-                overlayContainerStyle={{backgroundColor: '#2089DC'}}
-            />
-            <Text style={{fontSize: 20, color: '#0d66b5'}}>OpenApps</Text>
-            <Text>Pre-alpha build</Text>
-
-            <TextInput
-                placeholder="Phone Number"
-                onChangeText={setPhoneNumber}
+            {!verificationId && <Input
+                placeholder='+79990011222'
+                leftIcon={{type: 'font-awesome', name: 'phone-square', size: 50}}
+                label="Phone number"
+                labelStyle={{color: 'black', fontSize: 20, textAlign: 'center'}}
+                inputStyle={{fontSize: 45}}
                 keyboardType="phone-pad"
-                autoCompleteType="tel"
-            />
-            <TouchableOpacity onPress={sendVerification}>
-                <Text>Send Verification</Text>
-            </TouchableOpacity>
-            <TextInput
-                placeholder="Confirmation Code"
-                onChangeText={setCode}
+                onChangeText={setPhoneNumber}
+            />}
+            {!verificationId && <SocialIcon
+                type="envelope"
+                button
+                title="Send verification code"
+                style={{width: 220}}
+                onPress={sendVerification}
+            />}
+            {verificationId && <Input
+                placeholder='0123456'
+                label="Confirmation Code"
+                labelStyle={{color: 'black', fontSize: 20, textAlign: 'center'}}
+                inputStyle={{fontSize: 45, textAlign: 'center'}}
                 keyboardType="number-pad"
-            />
-            <TouchableOpacity onPress={confirmCode}>
-                <Text>Send Verification</Text>
-            </TouchableOpacity>
+                onChangeText={setCode}
+            />}
+            {verificationId && <Button
+                title="Confirm code"
+                onPress={confirmCode}
+                raised
+                containerStyle={{marginTop: 6}}
+                buttonStyle={{width: 180, height: 50, borderRadius: 30, backgroundColor: 'black'}}
+                titleStyle={{marginLeft: 8, fontSize: 16}}
+                icon={{
+                    type: 'font-awesome',
+                    name: 'check-square-o',
+                    size: 35,
+                    color: 'white'
+                }}
+            />}
 
             <FirebaseRecaptchaVerifierModal
                 ref={recaptchaVerifier}
