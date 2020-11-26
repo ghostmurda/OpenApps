@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {View} from "react-native";
+import {ActivityIndicator, View} from "react-native";
 import {Button, Input, SocialIcon} from "react-native-elements";
 import {FirebaseRecaptchaVerifierModal} from "expo-firebase-recaptcha";
 import firebase from '../../firebase';
@@ -8,6 +8,7 @@ import {setAuthCreator} from "../store/auth/actions";
 
 export default function PhoneAuthScreen(){
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [code, setCode] = useState('');
     const [verificationId, setVerificationId] = useState(null);
@@ -22,6 +23,7 @@ export default function PhoneAuthScreen(){
         }
     };
     const confirmCode = () => {
+        setLoading(true);
         const credential = firebase.auth.PhoneAuthProvider.credential(
             verificationId,
             code
@@ -61,7 +63,7 @@ export default function PhoneAuthScreen(){
                 keyboardType="number-pad"
                 onChangeText={setCode}
             />}
-            {verificationId && <Button
+            {verificationId && !loading && <Button
                 title="Confirm code"
                 onPress={confirmCode}
                 raised
@@ -75,6 +77,7 @@ export default function PhoneAuthScreen(){
                     color: 'white'
                 }}
             />}
+            {loading && <ActivityIndicator size="large" color="black" style={{marginTop: 6}}/>}
 
             <FirebaseRecaptchaVerifierModal
                 ref={recaptchaVerifier}
