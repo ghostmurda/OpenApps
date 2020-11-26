@@ -1,6 +1,7 @@
 {
   "main": "index.js",
   "scripts": {
+    "emulator": "cd android && ./gradlew app:installDebug -PreactNativeDevServerPort=8081 --scan",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "web": "expo start --web",

@@ -66,3 +66,5 @@ web-build/
 config.js
 google-services.json
 firebase.js
+android/app/google-services.json
+android/app/dubug.keystore
