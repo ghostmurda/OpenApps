@@ -4,7 +4,8 @@ import {Button, Input} from "react-native-elements";
 import firebase from '../../firebase';
 import {useDispatch} from "react-redux";
 import {setAuthCreator} from "../store/auth/actions";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+//import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AsyncStorage} from "react-native";
 
 export default function EmailSignUp(){
     const dispatch = useDispatch();

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {selectorAuth} from "./store/auth/selectors";
 import AuthScreen from "./screens/AuthScreen";
 import AppsScreen from "./screens/TabNavigator/AppsScreen";
@@ -11,20 +11,47 @@ import ChatsScreen from "./screens/TabNavigator/ChatsScreen";
 import {Icon} from "react-native-elements";
 import PhoneAuthScreen from "./screens/PhoneAuthScreen";
 import EmailSignUp from "./screens/EmailSignUp";
-
-const mapStateToProps = (state) => (
-    {
-        auth: selectorAuth(state)
-    }
-);
+//import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AsyncStorage} from "react-native";
+import firebase from '../firebase';
+import {setAuthCreator} from "./store/auth/actions";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function App(props) {
+export default function App() {
+    const dispatch = useDispatch();
+    const auth = useSelector(state => selectorAuth(state));
+    const ifLoggedIn = async () => {
+        try {
+            const email = await AsyncStorage.getItem('email');
+            const password = await AsyncStorage.getItem('password');
+            if (email._W !== null && password._W !== null){
+                dispatch(setAuthCreator(true));
+                const credential = firebase.auth.EmailAuthProvider.credential(
+                    email,
+                    password
+                );
+                firebase
+                    .auth()
+                    .signInWithCredential(credential)
+                    .then((result) => {
+
+                    });
+            }
+        } catch (err){
+            console.log(err);
+            dispatch(setAuthCreator(false));
+        }
+    }
+
+    useEffect(() => {
+        ifLoggedIn();
+    }, [])
+
     return (
         <NavigationContainer>
-            {props.auth ? (
+            {auth ? (
                 <>
                     <Tab.Navigator
                         tabBarOptions={{
@@ -91,5 +118,3 @@ function App(props) {
         </NavigationContainer>
     );
 }
-
-export default connect(mapStateToProps)(App);
