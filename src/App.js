@@ -14,7 +14,7 @@ import EmailSignUp from "./screens/EmailSignUp";
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AsyncStorage} from "react-native";
 import firebase from '../firebase';
-import {setAuthCreator} from "./store/auth/actions";
+import {setAuthCreator, toggleLoaderCreator} from "./store/auth/actions";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -22,10 +22,13 @@ const Tab = createBottomTabNavigator();
 export default function App() {
     const dispatch = useDispatch();
     const auth = useSelector(state => selectorAuth(state));
+
     const ifLoggedIn = async () => {
         try {
+            dispatch(toggleLoaderCreator(true));
             const email = await AsyncStorage.getItem('email');
             const password = await AsyncStorage.getItem('password');
+
             if (email._W !== null && password._W !== null){
                 dispatch(setAuthCreator(true));
                 const credential = firebase.auth.EmailAuthProvider.credential(
@@ -40,8 +43,9 @@ export default function App() {
                     });
             }
         } catch (err){
-            console.log(err);
+            dispatch(toggleLoaderCreator(false));
             dispatch(setAuthCreator(false));
+            alert(error);
         }
     }
 

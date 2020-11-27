@@ -1,32 +1,11 @@
-import {ActivityIndicator, Text, View} from "react-native";
-import React, {useState} from "react";
-import {useDispatch} from 'react-redux';
-import {setAuthCreator, setUserInfoCreator} from "../store/auth/actions";
-import * as Google from "expo-google-app-auth";
-import {androidOAuthKey} from '../../config'
-import {Avatar, Button, SocialIcon} from "react-native-elements";
+import {Text, View} from "react-native";
+import React from "react";
+import {useSelector} from 'react-redux';
+import {Avatar, Button} from "react-native-elements";
+import {selectorIsLoading} from "../store/auth/selectors";
 
 export default function AuthScreen({navigation}) {
-    const [googleLoading, setGoogleLoading] = useState(false);
-    const dispatch = useDispatch();
-
-    const googleSignIn = async () => {
-        setGoogleLoading(true);
-
-        const {type, accessToken, user} = await Google.logInAsync({
-            androidClientId: androidOAuthKey,
-        });
-
-        if (type === 'success') {
-            dispatch(setAuthCreator(true));
-            dispatch(setUserInfoCreator({
-                name: user.name,
-                photoUrl: user.photoUrl,
-                accessToken,
-                email: user.email
-            }));
-        }
-    }
+    const isLoading = useSelector(state => selectorIsLoading(state));
 
     return (
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -38,22 +17,11 @@ export default function AuthScreen({navigation}) {
             />
             <Text style={{fontSize: 20, color: '#0d66b5'}}>OpenApps</Text>
             <Text>Pre-alpha build</Text>
-            {googleLoading ?
-                <ActivityIndicator size="large" color="#DD4B39" style={{marginTop: 34, marginBottom: 20}}/>
-                :
-                <SocialIcon
-                    button
-                    title="Sign in with Google"
-                    type='google'
-                    onPress={() => googleSignIn()}
-                    style={{minWidth: 200, marginTop: 32}}
-                />
-            }
-            <Button
+            {!isLoading && <Button
                 title="Sign in with phone"
                 onPress={() => navigation.navigate('Phone authentication')}
                 raised
-                containerStyle={{marginTop: 6}}
+                containerStyle={{marginTop: 32}}
                 buttonStyle={{width: 200, height: 50, borderRadius: 30, backgroundColor: 'black'}}
                 titleStyle={{marginLeft: 10, fontSize: 14}}
                 icon={{
@@ -62,7 +30,7 @@ export default function AuthScreen({navigation}) {
                     size: 35,
                     color: 'white'
                 }}
-            />
+            />}
         </View>
     );
 }
