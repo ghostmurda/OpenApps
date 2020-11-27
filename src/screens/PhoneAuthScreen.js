@@ -3,11 +3,8 @@ import {ActivityIndicator, View} from "react-native";
 import {Button, Input, SocialIcon} from "react-native-elements";
 import {FirebaseRecaptchaVerifierModal} from "expo-firebase-recaptcha";
 import firebase from '../../firebase';
-import {useDispatch} from "react-redux";
-import {setAuthCreator} from "../store/auth/actions";
 
-export default function PhoneAuthScreen(){
-    const dispatch = useDispatch();
+export default function PhoneAuthScreen({navigation}){
     const [loading, setLoading] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [code, setCode] = useState('');
@@ -32,8 +29,7 @@ export default function PhoneAuthScreen(){
             .auth()
             .signInWithCredential(credential)
             .then((result) => {
-                dispatch(setAuthCreator(true));
-                console.log(result);
+                navigation.navigate('Sign up');
             });
     };
 
