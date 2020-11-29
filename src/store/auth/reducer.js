@@ -6,10 +6,11 @@ const initialState = {
     auth: false,
     isLoading: false,
     userInfo: {
-        name: null,
+        displayName: null,
         photoUrl: null,
-        accessToken: null,
-        email: null
+        phoneNumber: null,
+        email: null,
+        uid: null
     }
 }
 

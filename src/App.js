@@ -14,7 +14,7 @@ import EmailSignUp from "./screens/EmailSignUp";
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AsyncStorage} from "react-native";
 import firebase from '../firebase';
-import {setAuthCreator, toggleLoaderCreator} from "./store/auth/actions";
+import {setAuthCreator, setUserInfoCreator, toggleLoaderCreator} from "./store/auth/actions";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -39,7 +39,13 @@ export default function App() {
                     .auth()
                     .signInWithCredential(credential)
                     .then((result) => {
-
+                        dispatch(setUserInfoCreator({
+                            displayName: result.displayName,
+                            photoUrl: result.photoUrl,
+                            phoneNumber: result.phoneNumber,
+                            email: result.email,
+                            uid: result.uid
+                        }));
                     });
             }
         } catch (err){
