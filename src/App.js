@@ -39,12 +39,13 @@ export default function App() {
                     .auth()
                     .signInWithCredential(credential)
                     .then((result) => {
+                        const userInfo = result.user;
                         dispatch(setUserInfoCreator({
-                            displayName: result.displayName,
-                            photoUrl: result.photoUrl,
-                            phoneNumber: result.phoneNumber,
-                            email: result.email,
-                            uid: result.uid
+                            displayName: userInfo.displayName,
+                            photoUrl: userInfo.photoURL,
+                            phoneNumber: userInfo.phoneNumber,
+                            email: userInfo.email,
+                            uid: userInfo.uid
                         }));
                     });
             }
